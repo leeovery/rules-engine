@@ -1,0 +1,15 @@
+# .mint.toml — mint configuration. This file is fully OPTIONAL: every default is
+# compiled into mint, so an empty file is valid and changes nothing. Add a key only
+# to set a value that differs from the default.
+#
+# Config reference (every key, level, and default): https://github.com/leeovery/mint
+# AI-assisted setup (inspects your project and proposes config): run `mint setup`
+
+# Tests and CI plumbing change with most commits but aren't what a release
+# changes for users, so they're kept out of the release notes' diff.
+diff_exclude = ['tests/**', '.github/**']
+
+[release.hooks]
+# Gate the tag on the checks CI runs (Pint, PHPStan, Pest). A pushed tag reaches
+# Packagist and can't be taken back, and GitHub's CI only runs after the push.
+pre_tag = ['composer validate --strict', 'composer ci']

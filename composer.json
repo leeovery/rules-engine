@@ -1,0 +1,92 @@
+{
+    "name": "leeovery/rules-engine",
+    "description": "A rules engine for Laravel that resolves values from named rule sets against facts, with immutable, dated versions and a per-rule history of every change",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "rules-engine",
+        "rules",
+        "business-rules",
+        "conditions",
+        "versioning",
+        "immutable",
+        "effective-dates",
+        "audit"
+    ],
+    "homepage": "https://github.com/leeovery/rules-engine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lee Overy",
+            "email": "me@leeovery.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/leeovery/rules-engine/issues",
+        "source": "https://github.com/leeovery/rules-engine"
+    },
+    "require": {
+        "php": "^8.4",
+        "illuminate/cache": "^13.0",
+        "illuminate/database": "^13.0",
+        "illuminate/events": "^13.0",
+        "illuminate/support": "^13.0",
+        "spatie/laravel-package-tools": "^1.93"
+    },
+    "require-dev": {
+        "driftingly/rector-laravel": "^2.0",
+        "larastan/larastan": "^3.9",
+        "laravel/pint": "^1.26",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "pestphp/pest-plugin-phpstan": "^5.2",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "rector/rector": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LeeOvery\\RulesEngine\\": "src/",
+            "LeeOvery\\RulesEngine\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LeeOvery\\RulesEngine\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "format": "pint --parallel",
+        "format:check": "pint --parallel --test",
+        "refactor": "rector",
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "pest"
+        ],
+        "ci": [
+            "Composer\\Config::disableProcessTimeout",
+            "@format:check",
+            "@analyse",
+            "@test"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LeeOvery\\RulesEngine\\RulesEngineServiceProvider"
+            ],
+            "aliases": {
+                "RulesEngine": "LeeOvery\\RulesEngine\\Facades\\RulesEngine"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,26 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - vendor/pestphp/pest/extension.neon
+    - vendor/pestphp/pest-plugin-phpstan/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    paths:
+        - config/
+        - database/
+        - src/
+        - tests/
+
+    level: 8
+
+    tmpDir: build/phpstan
+
+    # Read the models' columns from the package's own migrations.
+    databaseMigrationsPath:
+        - database/migrations
+
+    parseModelCastsMethod: true
+
+    strictRules:
+        dynamicCallOnStaticMethod: false
